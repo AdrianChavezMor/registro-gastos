@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GASTOS</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="number-container" id="number-container">
+    <p>Gasto:</p>
+    <input type="number" id="number-input"></input>
+  </div>
+  <div class="description-container">
+    <p>Descripción:</p>
+    <input type="text" id="description-box"></input>
+  </div>
+  <div class="categories-container">
+    <p>Categoría:</p>
+    <select name="categories" id="categories">
+      <option value="Comida">Comida</option>
+      <option value="Entretenimiento">Entretenimiento</option>
+      <option value="Transferencia">Transferencia</option>
+      <option value="Otro">Otro</option>
+    </select>
+  </div>
+  <div class="registrar-containers" style="margin:15px">
+    <button onclick="registrarGasto()">
+      Registrar gasto
+    </button>
+  </div>
+  
+</body>
+</html>
