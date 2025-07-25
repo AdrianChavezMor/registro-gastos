@@ -5,7 +5,7 @@ const descriptionBox = document.getElementById('description-box')
 
 async function registrarGastoService(dataGasto) {
   try {
-    const response = await fetch('http://localhost:3000/registro', {
+    const response = await fetch('https://registro-gastos-backend.onrender.com/registro', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
