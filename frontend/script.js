@@ -38,18 +38,15 @@ async function registrarGasto(){
                  'fecha': fecha}
 
 
-  const result = await registrarGastoService(gasto);
+  await registrarGastoService(gasto);
 
-  numberInput.value = 0
-  categorySelector.value = ''
-  paymentmethodSelector.value = ''
-  descriptionBox.value = ''
-  
-  if (result.success) {
-    alert('¡Registro exitoso!');
-  } else {
-    alert('Error: ' + result.error);
-  }
+}
+
+function clearContent(){
+   numberInput.value = '';
+   categorySelector.selectedIndex = 0;
+   paymentmethodSelector.selectedIndex = 0;
+   descriptionBox.value = '';
 }
 
 //NEXT TO DO: CREATE AN ENDPOINT IN A NODE JS BACKEND SERVER AND SEND THE PAYLOAD THROUGH THAT ENDPOINT
