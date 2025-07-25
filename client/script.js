@@ -1,5 +1,6 @@
 const numberInput = document.getElementById('number-input')
 const categorySelector = document.getElementById('categories')
+const paymentmethodSelector = document.getElementById('metodos')
 const descriptionBox = document.getElementById('description-box')
 
 async function registrarGastoService(dataGasto) {
@@ -32,11 +33,17 @@ async function registrarGasto(){
 
   const gasto = {'monto': numberInput.value, 
                  'categoria': categorySelector.value,
+                 'metodo': paymentmethodSelector.value,
                  'descripcion': descriptionBox.value,
                  'fecha': fecha}
 
 
   const result = await registrarGastoService(gasto);
+
+  numberInput.value = 0
+  categorySelector.value = ''
+  paymentmethodSelector.value = ''
+  descriptionBox.value = ''
   
   if (result.success) {
     alert('¡Registro exitoso!');

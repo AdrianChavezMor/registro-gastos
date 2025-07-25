@@ -8,28 +8,35 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="number-container" id="number-container">
-    <p>Gasto:</p>
-    <input type="number" id="number-input"></input>
+  <div class="container">
+    <div class="number-container">
+      <p>Gasto:</p>
+      <input type="number" id="number-input">
+    </div>
+    <div class="categories-container">
+      <p>Categoría:</p>
+      <select id="categories">
+        <option value="Comida">Comida</option>
+        <option value="Entretenimiento">Entretenimiento</option>
+        <option value="Transferencia">Transferencia</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+    <div class="metodos-container">
+      <p>Método de pago:</p>
+      <select id="metodos">
+        <option value="BBVA">BBVA Débito</option>
+        <option value="efectivo">Efectivo</option>
+      </select>
+    </div>
+    <div class="description-container">
+      <p>Descripción:</p>
+      <input type="text" id="description-box">
+    </div>
+    <div class="registrar-containers">
+      <button onclick="registrarGasto()">Registrar gasto</button>
+    </div>
   </div>
-  <div class="description-container">
-    <p>Descripción:</p>
-    <input type="text" id="description-box"></input>
-  </div>
-  <div class="categories-container">
-    <p>Categoría:</p>
-    <select name="categories" id="categories">
-      <option value="Comida">Comida</option>
-      <option value="Entretenimiento">Entretenimiento</option>
-      <option value="Transferencia">Transferencia</option>
-      <option value="Otro">Otro</option>
-    </select>
-  </div>
-  <div class="registrar-containers" style="margin:15px">
-    <button onclick="registrarGasto()">
-      Registrar gasto
-    </button>
-  </div>
-  
 </body>
+
 </html>
