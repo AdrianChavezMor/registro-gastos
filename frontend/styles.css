@@ -72,6 +72,15 @@ button:hover {
 .categories-container,
 .metodos-container,
 .description-container,
-.registrar-containers {
+.registrar-containers,
+.clear-containers {
   margin-bottom: 15px;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 15px;
+  align-items: center;
 }
