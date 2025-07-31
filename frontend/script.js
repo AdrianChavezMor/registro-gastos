@@ -6,7 +6,13 @@ const descriptionBox = document.getElementById('description-box');
 let categorias = []
 let metodos = []
 
+//let myURL = 'http://localhost:3000';
+let myURL = 'https://registro-gastos-backend.onrender.com';
+
 initialize()
+
+
+
 
 async function initialize(){
   categorias = await obtenerCategoriasService();
@@ -37,7 +43,7 @@ function loadContent(){
 
 async function obtenerCategoriasService() {
   try {
-    const response = await fetch('http://localhost:3000/categorias', {
+    const response = await fetch(`${myURL}/categorias`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +68,7 @@ async function obtenerCategoriasService() {
 
 async function obtenerMetodosService() {
   try {
-    const response = await fetch('http://localhost:3000/metodos', {
+    const response = await fetch(`${myURL}/metodos`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -86,7 +92,7 @@ async function obtenerMetodosService() {
 
 async function registrarGastoService(dataGasto) {
   try {
-    const response = await fetch('https://registro-gastos-backend.onrender.com/registro', {
+    const response = await fetch(`${myURL}/registro`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
