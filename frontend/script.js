@@ -1,7 +1,7 @@
 const numberInput = document.getElementById('number-input')
 const categorySelector = document.getElementById('categories')
 const paymentmethodSelector = document.getElementById('metodos')
-const descriptionBox = document.getElementById('description-box')
+const descriptionBox = document.getElementById('description-box');
 
 async function registrarGastoService(dataGasto) {
   try {

@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 
-const { createConnection, registrarGastoSheets } = require('./sheetsService');
+const { createConnection, registrarGastoSheets, obtenerRegistros } = require('./sheetsService');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -35,6 +35,31 @@ app.post('/registro', (req,res) => {
 
   registrarGastoSheets(req.body)
   
+})
+
+
+app.get('/registro', async (req, res) => {
+  try {
+    const registros = await obtenerRegistros();
+    return res.json(registros);
+  } catch (error) {
+    console.error('Error in /registro route:', error);
+    return res.status(500).json({ error: 'Failed to get records' });
+  }
+});
+  
+
+
+app.post('/ajustes', (req,res) => {
+
+  cambiarAjustes(req.body)
+
+})
+
+app.get('/ajustes', (req,res) => {
+
+  return obtenerAjustes()
+
 })
 
 

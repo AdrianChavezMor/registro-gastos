@@ -8,7 +8,8 @@ const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
 const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
 
 let doc;
-let sheet;
+let sheetRegistros;
+let sheetAjustes;
 
 async function createConnection() {
   try {
@@ -24,7 +25,8 @@ async function createConnection() {
     console.log('Connection successful!');
     console.log('Sheet title:', doc.title);
     
-    sheet = doc.sheetsByIndex[0];
+    sheetRegistros = doc.sheetsByIndex[0];
+    sheetAjustes = doc.sheetsByIndex[1];
     
   } catch (error) {
     console.error('Connection failed:', error.message);
@@ -32,11 +34,10 @@ async function createConnection() {
 
 }
 
-
 async function registrarGastoSheets(datoGasto) {
 
     try {
-      const row = await sheet.addRow(datoGasto);
+      const row = await sheetRegistros.addRow(datoGasto);
       console.log('Row added successfully');
       return row;
     } catch (error) {
@@ -46,4 +47,27 @@ async function registrarGastoSheets(datoGasto) {
     
 }
 
-module.exports = {createConnection, registrarGastoSheets}
+async function obtenerRegistros(){
+
+    try {
+      const rows = await sheetRegistros.getRows();
+      
+      const registros = rows.map(row =>({
+        monto: row._rawData[0],
+        categoria: row._rawData[1], 
+        banco: row._rawData[2],
+        descripcion: row._rawData[3],
+        fecha: row._rawData[4],
+        rowNumber: row._rowNumber
+      }))
+      
+      return registros;
+    } catch (error) {
+      console.error('Could not get rows')
+      throw error;
+    }
+
+}
+
+
+module.exports = {createConnection, registrarGastoSheets, obtenerRegistros}
