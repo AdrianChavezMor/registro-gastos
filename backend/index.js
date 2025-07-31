@@ -50,7 +50,7 @@ app.get('/registro', async (req, res) => {
   
 app.post('/categorias', (req,res) => {
 
-  cambiarCategorias(req.body)
+  console.log(req.body)
 
 })
 
@@ -69,7 +69,7 @@ app.get('/categorias', async (req,res) => {
 
 app.post('/metodos', (req,res) => {
 
-  cambiarMetodos(req.body)
+  console.log(req.body)
 
 })
 
