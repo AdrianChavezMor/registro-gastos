@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 
-const { createConnection, registrarGastoSheets, obtenerRegistros } = require('./sheetsService');
+const { createConnection, registrarGastoSheets, obtenerRegistros, obtenerCategorias, obtenerMetodos } = require('./sheetsService');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -18,11 +18,11 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 async function initializer() {
   console.log('Connecting to Google Sheets...');
   await createConnection();
-  console.log('Connected!')
 }
 
 initializer()
 
+//ROUTES
 app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to your Express.js server!',
@@ -48,17 +48,41 @@ app.get('/registro', async (req, res) => {
   }
 });
   
+app.post('/categorias', (req,res) => {
 
-
-app.post('/ajustes', (req,res) => {
-
-  cambiarAjustes(req.body)
+  cambiarCategorias(req.body)
 
 })
 
-app.get('/ajustes', (req,res) => {
+app.get('/categorias', async (req,res) => {
 
-  return obtenerAjustes()
+  try {
+    const categorias = await obtenerCategorias();
+    return res.json(categorias)
+  } catch (error) {
+    console.error('Error in /categorias route:', error);
+    return res.status(500).json({ error: 'Failed to get records' });
+  }
+  
+
+})
+
+app.post('/metodos', (req,res) => {
+
+  cambiarMetodos(req.body)
+
+})
+
+app.get('/metodos', async (req,res) => {
+
+  try {
+    const metodos = await obtenerMetodos();
+    return res.json(metodos)
+  } catch (error) {
+    console.error('Error in /metodos route:', error);
+    return res.status(500).json({ error: 'Failed to get records' });
+  }
+  
 
 })
 

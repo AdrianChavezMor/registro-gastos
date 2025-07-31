@@ -9,7 +9,8 @@ const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
 
 let doc;
 let sheetRegistros;
-let sheetAjustes;
+let sheetCategorias;
+let sheetMetodos;
 
 async function createConnection() {
   try {
@@ -26,7 +27,8 @@ async function createConnection() {
     console.log('Sheet title:', doc.title);
     
     sheetRegistros = doc.sheetsByIndex[0];
-    sheetAjustes = doc.sheetsByIndex[1];
+    sheetCategorias = doc.sheetsByIndex[1];
+    sheetMetodos = doc.sheetsByIndex[2];
     
   } catch (error) {
     console.error('Connection failed:', error.message);
@@ -69,5 +71,28 @@ async function obtenerRegistros(){
 
 }
 
+async function obtenerCategorias(){
 
-module.exports = {createConnection, registrarGastoSheets, obtenerRegistros}
+  try {
+    const rows = await sheetCategorias.getRows();
+    let categorias = rows.map(row => (row._rawData[0]))
+    return categorias;
+  } catch (error){
+    console.error('Could not get rows')
+    throw error;
+  }
+}
+
+async function obtenerMetodos(){
+  try {
+    const rows = await sheetMetodos.getRows();
+    let metodos = rows.map(row => (row._rawData[0]))
+    return metodos;
+  } catch (error){
+    console.error('Could not get rows')
+    throw error;
+  }
+}
+
+
+module.exports = {createConnection, registrarGastoSheets, obtenerRegistros, obtenerCategorias, obtenerMetodos}
