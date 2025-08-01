@@ -3,24 +3,18 @@ const categorySelector = document.getElementById('categories')
 const paymentmethodSelector = document.getElementById('metodos')
 const descriptionBox = document.getElementById('description-box');
 
-let categorias = []
-let metodos = []
-
 //let myURL = 'http://localhost:3000';
 let myURL = 'https://registro-gastos-backend.onrender.com';
 
+let categorias = [];
+let metodos = [];
+
 initialize()
 
-
-
-
-async function initialize(){
-  categorias = await obtenerCategoriasService();
-  metodos = await obtenerMetodosService();
+function initialize(){
   
-  console.log(categorias)
-  localStorage.setItem('categorias', JSON.stringify(categorias));
-  localStorage.setItem('metodos', JSON.stringify(metodos));
+  categorias = JSON.parse(localStorage.getItem('categorias'));
+  metodos = JSON.parse(localStorage.getItem('metodos'));
 
   loadContent()
 } 
@@ -38,55 +32,6 @@ function loadContent(){
     newOptionElement.innerHTML = element;
     newOptionElement.value = element;
     paymentmethodSelector.appendChild(newOptionElement)
-  }
-}
-
-async function obtenerCategoriasService() {
-  try {
-    const response = await fetch(`${myURL}/categorias`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    
-    const data = await response.json();  // <-- Parse the response body as JSON
-    
-    if (response.ok) {
-      console.log('Categorias obtenidas');
-      
-      return data;
-      
-    } else {
-      return { success: false, error: data.error };
-    }
-  } catch (error) {
-    console.error('Error de red:', error);
-    return { success: false, error: 'Error de conexión' };
-  }
-}
-
-async function obtenerMetodosService() {
-  try {
-    const response = await fetch(`${myURL}/metodos`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    
-    const data = await response.json(); 
-    
-    if (response.ok) {
-      console.log('Métodos obtenidas');
-      
-      return data
-    } else {
-      return { success: false, error: data.error };
-    }
-  } catch (error) {
-    console.error('Error de red:', error);
-    return { success: false, error: 'Error de conexión' };
   }
 }
 

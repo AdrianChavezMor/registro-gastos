@@ -1,5 +1,3 @@
-let myURL = 'http://localhost:3000';
-
 let categoriasFetched = [];
 let metodosFetched = [];
 
@@ -137,57 +135,15 @@ agregarMetodoButton.addEventListener('click', () => {
   
 })
 
-guardarCategoriasButton.addEventListener('click', async () => {
+guardarCategoriasButton.addEventListener('click', () => {
 
       localStorage.setItem('categorias', JSON.stringify(categoriasFetched));
-
-      try {
-        const response = await fetch(`${myURL}/categorias`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(categoriasFetched)
-        });
-        
-        if (response.ok) {
-          console.log('Registro exitoso:');
-          return { success: true};
-        } else {
-          console.error('Error en registro:');
-          return { success: false};
-        }
-      } catch (error) {
-        console.error('Error de red:', error);
-        return { success: false, error: 'Error de conexión' };
-      }
   
 })
 
-guardarMetodosButton.addEventListener('click', async () => {
+guardarMetodosButton.addEventListener('click', () => {
 
       localStorage.setItem('metodos', JSON.stringify(metodosFetched));
-
-      try {
-        const response = await fetch(`${myURL}/metodos`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(metodosFetched)
-        });
-        
-        if (response.ok) {
-          console.log('Registro exitoso:');
-          return { success: true};
-        } else {
-          console.error('Error en registro:');
-          return { success: false};
-        }
-      } catch (error) {
-        console.error('Error de red:', error);
-        return { success: false, error: 'Error de conexión' };
-      }
   
 })
 

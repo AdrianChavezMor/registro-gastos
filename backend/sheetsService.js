@@ -71,28 +71,6 @@ async function obtenerRegistros(){
 
 }
 
-async function obtenerCategorias(){
-
-  try {
-    const rows = await sheetCategorias.getRows();
-    let categorias = rows.map(row => (row._rawData[0]))
-    return categorias;
-  } catch (error){
-    console.error('Could not get rows')
-    throw error;
-  }
-}
-
-async function obtenerMetodos(){
-  try {
-    const rows = await sheetMetodos.getRows();
-    let metodos = rows.map(row => (row._rawData[0]))
-    return metodos;
-  } catch (error){
-    console.error('Could not get rows')
-    throw error;
-  }
-}
 
 
-module.exports = {createConnection, registrarGastoSheets, obtenerRegistros, obtenerCategorias, obtenerMetodos}
+module.exports = {createConnection, registrarGastoSheets, obtenerRegistros}
