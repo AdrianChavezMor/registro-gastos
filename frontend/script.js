@@ -3,8 +3,8 @@ const categorySelector = document.getElementById('categories')
 const paymentmethodSelector = document.getElementById('metodos')
 const descriptionBox = document.getElementById('description-box');
 
-let myURL = 'http://localhost:3000';
-//let myURL = 'https://registro-gastos-backend.onrender.com';
+//let myURL = 'http://localhost:3000';
+let myURL = 'https://registro-gastos-backend.onrender.com';
 
 let categorias = [];
 let metodos = [];
