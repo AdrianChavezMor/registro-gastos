@@ -31,10 +31,16 @@ app.get('/', (req, res) => {
   });
 });
 
-app.post('/registro', (req,res) => {
+app.post('/registro', async (req,res) => {
 
-  registrarGastoSheets(req.body)
-  
+  try {
+    const registro = await registrarGastoSheets(req.body);
+    return res.json({registro});
+  } catch (error) {
+    console.error('Error in /registro route:', error);
+    return res.status(500).json({ error: 'Failed to record' });
+  }
+
 })
 
 

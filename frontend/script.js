@@ -3,8 +3,8 @@ const categorySelector = document.getElementById('categories')
 const paymentmethodSelector = document.getElementById('metodos')
 const descriptionBox = document.getElementById('description-box');
 
-//let myURL = 'http://localhost:3000';
-let myURL = 'https://registro-gastos-backend.onrender.com';
+let myURL = 'http://localhost:3000';
+//let myURL = 'https://registro-gastos-backend.onrender.com';
 
 let categorias = [];
 let metodos = [];
@@ -52,6 +52,8 @@ async function registrarGastoService(dataGasto) {
     });
     
     const data = await response.json();
+
+    console.log(response)
     
     if (response.ok) {
       console.log('Registro exitoso:', data);
@@ -75,8 +77,13 @@ async function registrarGasto(){
                  'descripcion': descriptionBox.value,
                  'fecha': fecha}
 
+  let response = await registrarGastoService(gasto);
 
-  await registrarGastoService(gasto);
+  if (response.success){
+    alert('Registro exitoso')
+    clearContent();
+  }
+ 
 
 }
 

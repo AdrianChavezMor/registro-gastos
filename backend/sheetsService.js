@@ -39,9 +39,9 @@ async function createConnection() {
 async function registrarGastoSheets(datoGasto) {
 
     try {
-      const row = await sheetRegistros.addRow(datoGasto);
+      await sheetRegistros.addRow(datoGasto);
       console.log('Row added successfully');
-      return row;
+      return {success: true};
     } catch (error) {
       console.error('Error adding row:', error);
       throw error;
