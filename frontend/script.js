@@ -13,13 +13,19 @@ initialize()
 
 function initialize(){
   
-  categorias = JSON.parse(localStorage.getItem('categorias'));
-  metodos = JSON.parse(localStorage.getItem('metodos'));
-  
   if (categorias.length == 0 && metodos.length == 0){
     localStorage.setItem('categorias', JSON.stringify(categorias))
     localStorage.setItem('metodos', JSON.stringify(metodos))
   }
+  
+  categorias = JSON.parse(localStorage.getItem('categorias'));
+  metodos = JSON.parse(localStorage.getItem('metodos'));
+
+  
+
+  
+  
+  
 
   
 
