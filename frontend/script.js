@@ -12,24 +12,15 @@ let metodos = [];
 initialize()
 
 function initialize(){
-  
-  if (categorias.length == 0 && metodos.length == 0){
+
+
+  if (localStorage.getItem('categorias') == null && localStorage.getItem('metodos') == null){
     localStorage.setItem('categorias', JSON.stringify(categorias))
     localStorage.setItem('metodos', JSON.stringify(metodos))
+  } else {
+    categorias = JSON.parse(localStorage.getItem('categorias'));
+    metodos = JSON.parse(localStorage.getItem('metodos'));
   }
-  
-  categorias = JSON.parse(localStorage.getItem('categorias'));
-  metodos = JSON.parse(localStorage.getItem('metodos'));
-
-  
-
-  
-  
-  
-
-  
-
-
 
   loadContent()
 } 
