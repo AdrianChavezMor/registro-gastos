@@ -3,28 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Configuración</title>
+  
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div id="categorias-container">
-     <h3>Categorías</h3>
-     <ul id="lista-categorias"></ul>
-     <div id="add-container">
-      <input id="input-categoria" type="text"></input>
-      <button id="agregar-categoria">Agregar</button>
-     </div>
-     <button id="guardar-categorias">Guardar</button>
+  <div class="container">
+    <div class="categories-container">
+      <p>Categorías</p>
+      <ul id="lista-categorias"></ul>
+      <div class="add-container">
+        <input id="input-categoria" type="text" placeholder="Nueva categoría">
+        <button id="agregar-categoria">Agregar</button>
+      </div>
+      <button id="guardar-categorias">Guardar</button>
+    </div>
+
+    <div class="metodos-container">
+      <p>Métodos de pago</p>
+      <ul id="lista-metodos"></ul>
+      <div class="add-container">
+        <input id="input-metodo" type="text" placeholder="Nuevo método">
+        <button id="agregar-metodo">Agregar</button>
+      </div>
+      <button id="guardar-metodos">Guardar</button>
+    </div>
+
+    <div class="clear-containers">
+      <button id="logout-button" class="clear-button">Cerrar sesión</button>
+    </div>
+
+    <div class="links-container">
+      <a href="https://docs.google.com/spreadsheets/d/1BqlqfIkRRjjCjkcnEN6ahQr5W2cC3KgZSzhAaXIrWXg/edit?usp=sharing" target="_blank">Ver documento Google Sheets</a>
+      <a href="../../">Home</a>
+    </div>
   </div>
-  <div id="metodos-container">
-     <h3>Métodos de pago</h3>
-     <ul id="lista-metodos"></ul>
-     <div id="add-container">
-      <input id="input-metodo" type="text"></input>
-      <button id="agregar-metodo">Agregar</button>
-     </div>
-     <button id="guardar-metodos">Guardar</button>
-  </div>
-  <a href="../../">Home</a>
 </body>
 </html>

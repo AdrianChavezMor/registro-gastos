@@ -31,6 +31,11 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/access', (req, res) => {
+  const TOKEN = process.env.ACCESS_TOKEN;
+  return res.json(TOKEN);
+})
+
 app.post('/registro', async (req,res) => {
 
   try {

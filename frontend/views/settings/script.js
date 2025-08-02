@@ -12,6 +12,7 @@ const agregarMetodoButton = document.getElementById('agregar-metodo');
 const agregarMetodoInput = document.getElementById('input-metodo');
 const guardarCategoriasButton = document.getElementById('guardar-categorias');
 const guardarMetodosButton = document.getElementById('guardar-metodos');
+const logoutButton = document.getElementById('logout-button');
 
 for (let i = 0; i < categoriasFetched.length; i++) {
   const element = categoriasFetched[i];
@@ -145,6 +146,13 @@ guardarMetodosButton.addEventListener('click', () => {
 
       localStorage.setItem('metodos', JSON.stringify(metodosFetched));
   
+})
+
+logoutButton.addEventListener('click', () => {
+
+  localStorage.removeItem('access');
+  window.location.href = '../ingreso'
+
 })
 
 

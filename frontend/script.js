@@ -13,6 +13,9 @@ initialize()
 
 function initialize(){
 
+  if(localStorage.getItem('access') == null){
+    window.location.href = 'views/ingreso'
+  }
 
   if (localStorage.getItem('categorias') == null && localStorage.getItem('metodos') == null){
     localStorage.setItem('categorias', JSON.stringify(categorias))
