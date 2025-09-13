@@ -84,3 +84,7 @@ button:hover {
   margin-bottom: 15px;
   align-items: center;
 }
+
+.dashboard p {
+  font-weight: lighter;
+}
