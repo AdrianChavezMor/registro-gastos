@@ -58,7 +58,7 @@ app.get('/registro', async (req, res) => {
   }
 });
 
-app.get('/suma_total_mes', async (req, res) => {
+app.get('/dashboard_data', async (req, res) => {
   try {
     const dashboard_data_sums = await dashboard_data();
     return res.json(dashboard_data_sums);
