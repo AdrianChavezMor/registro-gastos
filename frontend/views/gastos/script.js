@@ -1,13 +1,16 @@
 let registrosGlobal = []
 const tableBody = document.getElementById('tableBody');
 
+//let myURL = 'http://localhost:3000';
+let myURL = 'https://registro-gastos-backend.onrender.com';
+
 document.addEventListener('DOMContentLoaded', function() {
     obtenerRegistrosService();
 });
 
 async function obtenerRegistrosService() {
   try {
-    const response = await fetch('https://registro-gastos-backend.onrender.com/registro', {
+  const response = await fetch(`${myURL}/registro`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
