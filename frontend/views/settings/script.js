@@ -140,11 +140,15 @@ guardarCategoriasButton.addEventListener('click', () => {
 
       localStorage.setItem('categorias', JSON.stringify(categoriasFetched));
   
+      alert('Categorias guardadas');
+  
 })
 
 guardarMetodosButton.addEventListener('click', () => {
 
       localStorage.setItem('metodos', JSON.stringify(metodosFetched));
+
+      alert('Metodos guardados');
   
 })
 
