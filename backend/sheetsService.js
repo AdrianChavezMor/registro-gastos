@@ -85,8 +85,10 @@ async function dashboard_data(){
           const [datePart] = row._rawData[4].split(","); // "4/8/2025"
           const [day, month, year] = datePart.split("/").map(Number);
 
-          // month is 1-based, so September = 9
-          return month === 9;
+          const currentDate = new Date();
+          const currentMonthNumber = currentDate.getMonth() + 1;
+
+          return month === currentMonthNumber;
         });
 
         
