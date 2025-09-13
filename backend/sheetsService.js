@@ -71,6 +71,61 @@ async function obtenerRegistros(){
 
 }
 
+async function dashboard_data(){
+
+    let suma_total_mes = 0;
+    let suma_total_necesidadesbasicas = 0;
+    let suma_total_gustitos = 0;
+    let suma_total_comerfuera = 0;
+
+    try {
+        const rows = await sheetRegistros.getRows();
+        
+        const registros_mes = rows.filter(row => {
+          const [datePart] = row._rawData[4].split(","); // "4/8/2025"
+          const [day, month, year] = datePart.split("/").map(Number);
+
+          const currentDate = new Date();
+          const currentMonthNumber = currentDate.getMonth() + 1;
+
+          return month === currentMonthNumber;
+        });
+
+        
+        for (const registro of registros_mes) {
+          suma_total_mes += Number(registro._rawData[0]);
+
+          if (registro._rawData[1] === 'Necesidades basicas'){
+            suma_total_necesidadesbasicas += Number(registro._rawData[0]);
+          } 
+          
+          if (registro._rawData[1] === 'Gustitos'){
+            suma_total_gustitos += Number(registro._rawData[0]);
+          }
+
+          if (registro._rawData[1] === 'Comer fuera'){
+            suma_total_comerfuera += Number(registro._rawData[0]);
+          }
+        }
+
+        const dashboard_data_structure = {
+          suma_mes: suma_total_mes,
+          suma_necesidadesbasicas: suma_total_necesidadesbasicas,
+          suma_gustitos: suma_total_gustitos,
+          suma_comerfuera: suma_total_comerfuera
+        }
+        
+        
+        return dashboard_data_structure;
+
+    } catch (error) {
+      console.error('Could not get rows')
+      throw error;
+    }
 
 
-module.exports = {createConnection, registrarGastoSheets, obtenerRegistros}
+}
+
+
+
+module.exports = {createConnection, registrarGastoSheets, obtenerRegistros, dashboard_data}

@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 
-const { createConnection, registrarGastoSheets, obtenerRegistros} = require('./sheetsService');
+const { createConnection, registrarGastoSheets, obtenerRegistros, dashboard_data} = require('./sheetsService');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -48,13 +48,22 @@ app.post('/registro', async (req,res) => {
 
 })
 
-
 app.get('/registro', async (req, res) => {
   try {
     const registros = await obtenerRegistros();
     return res.json(registros);
   } catch (error) {
     console.error('Error in /registro route:', error);
+    return res.status(500).json({ error: 'Failed to get records' });
+  }
+});
+
+app.get('/dashboard_data', async (req, res) => {
+  try {
+    const dashboard_data_sums = await dashboard_data();
+    return res.json(dashboard_data_sums);
+  } catch (error) {
+    console.error('Error in /suma_total_mes route:', error);
     return res.status(500).json({ error: 'Failed to get records' });
   }
 });
