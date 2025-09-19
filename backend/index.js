@@ -1,9 +1,13 @@
+
 const express = require('express')
 const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 
+
 const { createConnection, registrarGastoSheets, obtenerRegistros, dashboard_data} = require('./sheetsService');
+const { getAIResponse_recommendation } = require('./llmService')
+
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,6 +25,8 @@ async function initializer() {
 }
 
 initializer()
+
+
 
 //ROUTES
 app.get('/', (req, res) => {
@@ -67,6 +73,22 @@ app.get('/dashboard_data', async (req, res) => {
     return res.status(500).json({ error: 'Failed to get records' });
   }
 });
+
+
+app.get('/recommendation', async (req, res) => {
+  try{
+    const gastos = await obtenerRegistros();
+    const sumasTotales = await dashboard_data();
+  
+    const recommendation = await getAIResponse_recommendation(JSON.stringify(gastos), JSON.stringify(sumasTotales));
+    return res.send(recommendation)
+    
+  }catch (error) {
+    console.error('Error in /recommendation route:', error);
+    return res.status(500).json({ error: 'Failed to get recommendation' });
+  }
+})
+
 
 
 // Start server
