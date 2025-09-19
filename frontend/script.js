@@ -2,6 +2,7 @@ const numberInput = document.getElementById('number-input')
 const categorySelector = document.getElementById('categories')
 const paymentmethodSelector = document.getElementById('metodos')
 const descriptionBox = document.getElementById('description-box');
+const texto_recomendacion = document.getElementById("texto_recomendacion");
 
 //let myURL = 'http://localhost:3000';
 let myURL = 'https://registro-gastos-backend.onrender.com';
@@ -131,6 +132,31 @@ async function registrarGasto(){
 
 }
 
+async function obtener_recomendacion() {
+  try {
+    const response = await fetch(`${myURL}/recommendation`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.text(); // 👈 get the text from the response
+      texto_recomendacion.textContent = data; // 👈 safer than innerHTML if data is plain text
+      return { success: true };
+    } else {
+      const errorText = await response.text(); // read error message
+      return { success: false, error: errorText };
+    }
+  } catch (error) {
+    console.error("Error de red:", error);
+    return { success: false, error: "Error de conexión" };
+  }
+}
+
+
+
 
 
 function clearContent(){
@@ -138,6 +164,8 @@ function clearContent(){
    categorySelector.selectedIndex = 0;
    paymentmethodSelector.selectedIndex = 0;
    descriptionBox.value = '';
+   texto_recomendacion.innerHTML = '';
+
 }
 
 

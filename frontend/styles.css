@@ -88,3 +88,16 @@ button:hover {
 .dashboard p {
   font-weight: lighter;
 }
+
+.recommendation {
+  border-color: black;
+  margin: 5px;
+
+}
+
+.recommendation p {
+  font-weight: lighter;
+  font-size: 12px;
+  padding: 5px;
+}
+
