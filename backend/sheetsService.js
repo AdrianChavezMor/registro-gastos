@@ -88,6 +88,8 @@ async function dashboard_data(){
           const currentDate = new Date();
           const currentMonthNumber = currentDate.getMonth() + 1;
 
+          console.log("Current month: " + currentMonthNUmber)
+
           return month === currentMonthNumber;
         });
 
