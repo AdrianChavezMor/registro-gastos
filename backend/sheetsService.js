@@ -108,6 +108,11 @@ async function dashboard_data(){
           }
         }
 
+        console.log(suma_total_mes);
+        console.log(suma_total_necesidadesbasicas);
+        console.log(suma_total_gustitos);
+        console.log(suma_total_comerfuera)
+
         const dashboard_data_structure = {
           suma_mes: suma_total_mes,
           suma_necesidadesbasicas: suma_total_necesidadesbasicas,
